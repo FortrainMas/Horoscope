@@ -24,15 +24,15 @@ async function open(){
 
 //Set newPrediction for sign
 async function setDailyPredict(newPredict, sign){
-    const dp = await open;
+    const dp = await open();
     dp[sign] = newPredict;
-    set(dp);
+    set(JSON.stringify(dp));
 }
 
 //Save changed daily predictions to file
 async function set(newPredictionState){
     const data = new Uint8Array(Buffer.from(newPredictionState));
-    await fs.writeFile('../server/Daily_prediction.json', data);
+    fs.writeFile('../server/Daily_prediction.json', data);
 }
 
 //At midnight function clears predictions of every signs
