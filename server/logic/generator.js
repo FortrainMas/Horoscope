@@ -1,9 +1,17 @@
+const fs = require('fs').promises
+const {getDailyPredict, setDailyPredict} =require('../logic/dailyPredictionWorkers');
+const {signsDeclinator} = require('../utils/generator.utils');
+
 module.exports = {
-    makePrediction,
+    getPrediction,
     signsDeclinator,
 }
 
-function makePrediction(sign){
+async function getPrediction(sign){
+    return await makePrediction(sign)
+}
+
+async function makePrediction(sign){
     sign = signsDeclinator(sign);
     if(!sign) { return null; }
     const predictionStart = `Вот, что звёзды говорят для ${sign} `;
@@ -11,25 +19,6 @@ function makePrediction(sign){
     return(
         predictionStart + predictionBody
     );
-}
-
-function signsDeclinator(sign){
-    signs = {
-        "овен" : "овнов",
-        "телец" : "тельцов",
-        "близнецы":"близнецов",
-        "рак" : "раков",
-        "лев" : "львов",
-        "дева" : "дев",
-        "весы" : "весов",
-        "скорпион":"скорпионов",
-        "стрелец" : "стрельцов",
-        "козерог" : "козерогов",
-        "водолей":"водолей",
-        "рыбы":"рыб",
-        "рыба":"рыб",
-    }
-    return(signs[sign.toLowerCase()]|| null)
 }
 
 function randomPrediction(){

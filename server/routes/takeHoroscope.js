@@ -1,15 +1,15 @@
 const {Router} = require('express');
 const router = Router();
-const {makePrediction} = require('../logic/generator');
+const {getPrediction} = require('../logic/generator');
 
 router.get(
     '', 
     async (req, res) => {
         const {sign} = req.query;
-        const prediction = await makePrediction(sign);
+        const prediction = await getPrediction(sign);
         res.json(
             {
-                "Server": prediction
+                "Prediction": prediction
         })
     }
 )

@@ -1,4 +1,4 @@
-const {signsDeclinator} = require('../logic/generator');
+const {signsDeclinator} = require('../utils/generator.utils');
 
 test('Function signsDeclinator is working', () => {
   [
