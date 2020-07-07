@@ -1,25 +1,29 @@
 module.exports = {
     signsDeclinator,
-    signInterpreter
+    checkSign
 }
 
-function signInterpreter(sign){
-    const signs = {
-        "овен" : "aries",
-        "телец" : "taurus",
-        "близнецы" : "gemini",
-        "рак" : "cancer",
-        "лев" : "leo",
-        "дева" : "virgo",
-        "весы" : "libra",
-        "скорпион" : "scorpio",
-        "стрелец" : "sagittarius",
-        "козерог" : "carpicorn",
-        "водолей" : "aquarius",
-        "рыбы" : "pisces",
-        "рыба" : "pisces",
+function checkSign(el){
+    const signs = [
+        "aries",
+        "taurus",
+        "gemini",
+        "cancer",
+        "leo",
+        "virgo",
+        "libra",
+        "scorpio",
+        "sagittarius",
+        "carpicorn",
+        "aquarius",
+        "pisces",
+        "pisces",
+    ];
+    let sign = false;
+    if(signs.includes(el)){
+        sign = el;
     }
-    return(signs[sign.toLowerCase()] || null);
+    return( sign || null);
 }
 
 //Declanate signs' names or return null if sign isn't exist

@@ -1,6 +1,6 @@
 const fs = require('fs').promises
 const {getDailyPredict, setDailyPredict} =require('../logic/dailyPredictionWorkers');
-const {signsDeclinator, signInterpreter} = require('../utils/generator.utils');
+const {signsDeclinator, checkSign} = require('../utils/generator.utils');
 
 module.exports = {
     getPrediction,
@@ -9,8 +9,8 @@ module.exports = {
 
 async function getPrediction(sign){
     
-    //Transalte sign name to English
-    sign = signInterpreter(sign);
+    //Check is sign name correct
+    sign = checkSign(sign);
     if(!sign) { return null; }
 
     //Load today prediction if it exists
@@ -27,7 +27,7 @@ async function getPrediction(sign){
 async function makePrediction(sign){
     //Return Russian word in correct form
     sign = signsDeclinator(sign);
-    const predictionStart = `Вот, что звёзды говорят для ${sign} `;
+    const predictionStart = `Вот, что звёзды говорят для ${sign}. `;
     const predictionBody = randomPrediction();
     return(
         predictionStart + predictionBody
